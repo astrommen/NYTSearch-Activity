@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/4b14d4a7a7.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans|Montserrat|Heebo:700&display=swap" rel="stylesheet">
+  <title>NYT Search</title>
+</head>
+<style>
+  .header {
+    font-family: 'Heebo', sans-serif;
+    background-color: rgb(27, 53, 122);
+    height: 180px;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  .header p {
+    padding-top: 60px;
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="header">
+      <p><span><i class="far fa-newspaper"></i></span> New York Times Search</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading"><span><i class="far fa-calendar-alt"></i></span>Search Parameters</div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <label for="formGroupExampleInput"> Search Term:</label>
+            <input type="text" class="form-control" id="formGroupExampleInput1">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Number of Records to Retrieve:</label>
+            <select class="form-control">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Start Year: (Optional)</label>
+            <input type="text" class="form-control" id="formGroupExampleInput">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">End Year: (Optional)</label>
+            <input type="text" class="form-control" id="formGroupExampleInput">
+          </div>
+          <button type="submit" class="btn btn-primary"><span><i class="fas fa-search"></i></span> Search</button>
+          <button type="submit" class="btn btn-primary"><span><i class="fas fa-trash-alt"></i></span> Clear
+            Results</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Search Parameters</div>
+      <div class="panel-body"></div>
+    </div>
+  </div>
+</body>
+
+<script>
+    $(document).ready(function() {
+
+var semantic = $("#formGroupExampleInput1").val();
+var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + semantic +"&api-key=nEg5W7MwCezOC0wLlTdBNi3GnCfBoICZ";
+
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+})
+
+.then(function(response) {
+    var results = response.data
+    console.log(response);
+
+})
+})
+</script>
+</html>
